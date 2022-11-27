@@ -1,39 +1,63 @@
 <script setup lang="ts">
-import { onMounted, computed, defineAsyncComponent } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useFakerStore } from '../store/useFakerStore';
-import { useLoadingStore } from '../store/useLoadingStore';
+import { onMounted, defineAsyncComponent } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useFakerStore } from '../store/useFakerStore'
+import { useLoadingStore } from '../store/useLoadingStore'
 
-const Card = defineAsyncComponent(() => import('./Card.vue'));
+// components
+const Form = defineAsyncComponent(() => import('./form/Form.vue'))
+const TableHeader = defineAsyncComponent(() => import('./table/TableHeader.vue'))
+const TableRow = defineAsyncComponent(() => import('./table/TableRow.vue'))
 
+// stores
 const fakerStore = useFakerStore()
 const loadingStore = useLoadingStore()
 
+// store actions
 const { loadFakerList } = fakerStore
-const { users, selected, dataError } = storeToRefs(fakerStore)
-const { isLoading } = storeToRefs(loadingStore)
 
+// store getters
+const { users } = storeToRefs( fakerStore )
+const { isLoading } = storeToRefs( loadingStore )
+
+// initially load 1 object from Fakers API
 onMounted(async () => await loadFakerList())
-
 
 </script>
 <template>
-	<div class="mb-8">
+	<div class="mb-8 max-w-3xl mx-auto">
+		<Form></Form>
 		<div v-if="isLoading">
 			<!-- TODO: create Loading component -->
 			LOADING....
 		</div>
 		<div v-else>
 			loaded: {{ users.length }} user(s) in total
-		</div>
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-4">
-			<div v-for="(user, index) in users" :key="index">
-				<Card :name="user.name" :email="user.email"></Card>
-			</div>
-		</div>
+			<!-- Table Section -->
+			<div class="flex flex-col">
+				<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+					<div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+						<div class="overflow-hidden">
+							<table class="min-w-full bg-white">
+								<thead class="border-b">
+									<TableHeader></TableHeader>
+								</thead>
+								<tbody>
+									<TableRow
+										v-for="(user, index) in users"
+										:key="index"
+										:count="index"
+										:rowFake="user">
+									</TableRow>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div> <!-- ./Table Section -->
+		</div> <!-- ./v-else -->
 	</div>
 </template>
-
 
 <style scoped>
 
