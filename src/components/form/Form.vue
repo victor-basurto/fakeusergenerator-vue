@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent, unref, ref } from 'vue'
+import { defineAsyncComponent, unref, ref, toRefs } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useFakerStore } from '../../store/useFakerStore'
 
@@ -14,6 +14,12 @@ const { loadFakerList, setPageError } = fakerStore
 
 // store getters
 const { getErrorMsg, qtyLoaded } = storeToRefs( fakerStore )
+
+// props
+const props = withDefaults(defineProps<{formName: string}>(), {
+	formName: 'Faker'
+})
+const { formName } = toRefs( props )
 
 // loadData and emit results from store to `fakeUsers`
 const loadData = async () => {
@@ -33,9 +39,14 @@ const loadNumber = ref(0)
 
 </script>
 <template>
-	<form class="bg-white">
+	<form class="bg-white px-8">
+		<div class="mt-8 py-8 text-black text-center">
+			<h2 class="font-sans text-3xl uppercase">
+				<slot>{{ formName }}</slot>
+			</h2>
+		</div>
 		<div class="grid gap-6 md:grid-cols-2 place-items-center py-8">
-			<div>
+			<div class="w-full">
 				<label
 					for="fakeQty"
 					class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

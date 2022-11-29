@@ -26,7 +26,7 @@ onMounted(async () => await loadFakerList())
 </script>
 <template>
 	<div class="mb-8 max-w-3xl mx-auto">
-		<Form></Form>
+		<Form formName="Faker Loader"></Form>
 		<div v-if="isLoading">
 			<!-- TODO: create Loading component -->
 			LOADING....
