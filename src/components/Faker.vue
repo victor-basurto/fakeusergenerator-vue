@@ -26,7 +26,7 @@ onMounted(async () => await loadFakerList())
 </script>
 <template>
 	<div class="mb-8 max-w-3xl mx-auto">
-		<Form formName="Faker Loader"></Form>
+		<Form form-name="Faker Loader"></Form>
 		<div v-if="isLoading">
 			<!-- TODO: create Loading component -->
 			LOADING....
@@ -41,7 +41,7 @@ onMounted(async () => await loadFakerList())
 							<table class="min-w-full bg-white">
 								<thead class="border-b">
 									<TableHeader
-										:headerNames="['First', 'Last', 'Email']">
+										:header-names="['First', 'Last', 'Email']">
 									</TableHeader> <!-- ./Table Header -->
 								</thead>
 								<tbody>
@@ -49,7 +49,7 @@ onMounted(async () => await loadFakerList())
 										v-for="(user, index) in users"
 										:key="index"
 										:count="index"
-										:rowFake="user">
+										:row-fake="user">
 									</TableRow> <!-- ./Table Row -->
 								</tbody>
 							</table>

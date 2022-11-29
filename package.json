@@ -9,6 +9,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"flowbite": "^1.5.4",
 		"pinia": "*",
 		"vue": "^3.2.41",
 		"vue-router": "*"
