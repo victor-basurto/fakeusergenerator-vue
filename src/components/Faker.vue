@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, defineAsyncComponent } from 'vue'
 import { storeToRefs } from 'pinia'
+import { Spinner } from 'flowbite-vue'
 import { useFakerStore } from '../store/useFakerStore'
 import { useLoadingStore } from '../store/useLoadingStore'
 
@@ -27,9 +28,8 @@ onMounted(async () => await loadFakerList())
 <template>
 	<div class="mb-8 max-w-3xl mx-auto">
 		<Form form-name="Faker Loader"></Form>
-		<div v-if="isLoading">
-			<!-- TODO: create Loading component -->
-			LOADING....
+		<div class="flex justify-center items-center min-h-[40vh]" v-if="isLoading">
+			<Spinner size="12" />
 		</div>
 		<div v-else>
 			loaded: {{ users.length }} user(s) in total

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent, unref, ref, toRefs } from 'vue'
+import { defineAsyncComponent, unref, ref, toRefs, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useFakerStore } from '../../store/useFakerStore'
 
@@ -25,7 +25,8 @@ const { formName } = toRefs( props )
 
 // loadData and emit results from store to `fakeUsers`
 const loadData = async () => {
-	const dataQty = unref(loadNumber)
+	// convert string loadnumber to number and unref
+	const dataQty = ~~unref(loadNumber)
 	try {
 		// once data is loaded
 		await loadFakerList(dataQty)
@@ -37,7 +38,7 @@ const loadData = async () => {
 }
 
 // model binding
-const loadNumber = ref(0)
+const loadNumber = ref('0')
 
 </script>
 <template>
@@ -60,7 +61,7 @@ const loadNumber = ref(0)
 				placeholder="999"
 				label-id="fakeQty"
 				input-type="number"
-				:qty-number="loadNumber"
+				v-model:qtyNumber="loadNumber"
 				:min="0"
 				:max="999"
 				:mandatory="true"

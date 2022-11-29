@@ -4,7 +4,7 @@ import { toRefs } from 'vue'
 type FormInput = {
 	labelName: string,
 	placeholder: string,
-	qtyNumber: number,
+	qtyNumber: string,
 	labelId: string,
 	inputType: string,
 	min?: number,
@@ -16,7 +16,7 @@ type FormInput = {
 const props = withDefaults(defineProps<FormInput>(), {
 	labelName: 'Label Name',
 	placeholder: 'Placeholder Name',
-	qtyNumber: 0,
+	qtyNumber: '0',
 	labelId: 'labelId',
 	inputType: 'inputType',
 	min: 0,
@@ -40,7 +40,8 @@ const { labelName, placeholder, qtyNumber, labelId, inputType, min, max, mandato
 			:min="min"
 			:max="max"
 			:placeholder="placeholder"
-			v-model="qtyNumber"
+			:value="qtyNumber"
+			@input="$emit('update:qtyNumber', ($event.target as HTMLInputElement).value)"
 			:required="(mandatory === true)"
 		/>
 	</div>
