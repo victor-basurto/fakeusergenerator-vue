@@ -6,7 +6,6 @@ import { useFakerStore } from '../../store/useFakerStore'
 // components
 const CheckBox = defineAsyncComponent(() => import('./Checkbox.vue'))
 const Input = defineAsyncComponent(() => import('./Input.vue'))
-const SearchDropdown = defineAsyncComponent(() => import('./SearchDropdown.vue'))
 const Button = defineAsyncComponent(() => import('../base/Button.vue'))
 
 // store
@@ -49,6 +48,7 @@ const loadNumber = ref(0)
 			</h2>
 		</div>
 		<div class="grid gap-6 md:grid-cols-2 place-items-center py-8">
+
 			<CheckBox
 				label-name="Job Title"
 				field-id="jobTitle">
