@@ -40,7 +40,9 @@ onMounted(async () => await loadFakerList())
 						<div class="overflow-hidden">
 							<table class="min-w-full bg-white">
 								<thead class="border-b">
-									<TableHeader></TableHeader>
+									<TableHeader
+										:headerNames="['First', 'Last', 'Email']">
+									</TableHeader> <!-- ./Table Header -->
 								</thead>
 								<tbody>
 									<TableRow
@@ -48,7 +50,7 @@ onMounted(async () => await loadFakerList())
 										:key="index"
 										:count="index"
 										:rowFake="user">
-									</TableRow>
+									</TableRow> <!-- ./Table Row -->
 								</tbody>
 							</table>
 						</div>
