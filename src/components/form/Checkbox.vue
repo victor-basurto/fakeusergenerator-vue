@@ -1,25 +1,31 @@
 <script setup lang="ts">
-import { toRefs } from 'vue'
+import { toRefs, ref } from 'vue'
 
 type CheckboxInput = {
 	labelName: string,
-	fieldId: string
+	fieldId: string,
+	checked: boolean
 }
 /**
  * Default props to create checkbox
  */
 const props = withDefaults(defineProps<CheckboxInput>(), {
 	labelName: 'Field Title',
-	fieldId: 'fieldId'
+	fieldId: 'fieldId',
+	checked: false
 })
-const { labelName, fieldId } = toRefs(props)
+const { labelName, fieldId, checked } = toRefs(props)
+
+
 </script>
 <template>
 	<input
-		:id="fieldId"
-		type="checkbox"
-		value=""
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+		type="checkbox"
+		:value="fieldId"
+		:id="fieldId"
+		:checked="checked"
+		@input="$emit('update:checked', ($event.target as HTMLInputElement).checked)"
 		required
 	/>
 	<label

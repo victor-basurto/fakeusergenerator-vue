@@ -40,6 +40,8 @@ const loadData = async () => {
 // model binding
 const loadNumber = ref('0')
 
+const checkType = ref(false)
+
 </script>
 <template>
 	<form class="bg-white px-8">
@@ -52,9 +54,9 @@ const loadNumber = ref('0')
 
 			<CheckBox
 				label-name="Job Title"
-				field-id="jobTitle">
-			</CheckBox> <!-- ./ checkbox comp -->
-
+				field-id="jobTitle"
+				v-model:checked="checkType"
+			/> <!-- ./ checkbox comp -->
 
 			<Input class="testing"
 				label-name="Fake Data Qty"
