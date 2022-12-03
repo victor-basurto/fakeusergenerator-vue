@@ -12,3 +12,5 @@ export interface IFormInput {
 	max?: number,
 	mandatory?: boolean
 }
+// checkbox options
+export type CheckboxOptionsType = Record<'name' | 'id', string>

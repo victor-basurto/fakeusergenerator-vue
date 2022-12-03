@@ -9,7 +9,7 @@ import {
 type FakersResult = Pick<IFakerUserState, 'users'>
 
 /**
- * API call to Fetch all FakeUsers
+ * API call - Fetch all FakeUsers
  * @param payloadNumber - Number of Users to be loaded
  * @returns Promise<IFakerUser[]>
  */
@@ -25,7 +25,7 @@ export const fetchFakers = (payloadNumber: number = 0): Promise<IFakerUser[]> =>
 	})
 }
 /**
- * function will get N number of items. if its less than 2 or 0
+ * function gets N number of items. if its less than 2
  * just return One Instance with { name, email, lastName }
  * otherwise return Array<IFakerUser>
  * @param loadQty - Number of items to be loaded
@@ -50,7 +50,6 @@ const loadFakers = (loadQty: number = 0): FakersResult => {
 			lastName: faker.name.lastName()
 		})
 	}
-	console.log(users)
 	return {
 		users
 	}

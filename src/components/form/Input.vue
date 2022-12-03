@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { toRefs } from 'vue'
-
+// runtime type only accessible in props
 type FormInput = {
 	labelName: string,
 	placeholder: string,
@@ -11,7 +11,6 @@ type FormInput = {
 	max?: number,
 	mandatory?: boolean
 }
-
 // props to create input field
 const props = withDefaults(defineProps<FormInput>(), {
 	labelName: 'Label Name',
@@ -46,8 +45,6 @@ const { labelName, placeholder, qtyNumber, labelId, inputType, min, max, mandato
 		/>
 	</div>
 </template>
-
-
 <style scoped>
 
 </style>
